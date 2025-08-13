@@ -6,6 +6,7 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaMapMarkerAlt,
+  FaWhatsapp,
 } from "react-icons/fa";
 import emailjs from "emailjs-com";
 
@@ -55,16 +56,19 @@ const ContactForm = () => {
         <div className="space-y-5 text-gray-700 text-sm md:text-base">
           <div className="flex items-center gap-3" aria-label="Email address">
             <FaEnvelope className="text-green-600 w-5 h-5 md:w-6 md:h-6" />
-            <a
-              href="mailto:khbidyut31@gmail.com"
+            <p
               className="hover:text-green-700 focus:outline-none focus:ring-1 focus:ring-green-600 rounded transition"
             >
               khbidyut31@gmail.com
-            </a>
+            </p>
           </div>
 
           <div className="flex items-center gap-3" aria-label="Phone number">
             <FaPhoneAlt className="text-green-600 w-5 h-5 md:w-6 md:h-6" />
+            <span className="text-xs md:text-sm">+880 1796-343549</span>
+          </div>
+          <div className="flex items-center gap-3" aria-label="Phone number">
+            <FaWhatsapp className="text-green-600 w-5 h-5 md:w-6 md:h-6" />
             <span className="text-xs md:text-sm">+880 1796-343549</span>
           </div>
 
@@ -76,7 +80,7 @@ const ContactForm = () => {
 
         <div className="flex space-x-6 mt-8 text-gray-700 text-xl md:text-2xl">
           <a
-            href="https://linkedin.com/in/yourprofile"
+            href="https://www.linkedin.com/in/kausarhossainbidyut"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn"
@@ -85,7 +89,7 @@ const ContactForm = () => {
             <FaLinkedin />
           </a>
           <a
-            href="https://github.com/yourprofile"
+            href="https://github.com/Kausarhossainbidyut"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
@@ -94,7 +98,7 @@ const ContactForm = () => {
             <FaGithub />
           </a>
           <a
-            href="https://twitter.com/yourprofile"
+            href="https://x.com/khbidyut31"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Twitter"

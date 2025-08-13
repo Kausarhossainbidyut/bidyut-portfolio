@@ -1,0 +1,12 @@
+/* .custom-cursor span {
+  animation: blinkTwicePause 2s infinite;
+}
+
+@keyframes blinkTwicePause {
+  0%, 10% { opacity: 1; }
+  15%, 25% { opacity: 0; }
+  30%, 40% { opacity: 1; }  /* ২য় বার ব্লিঙ্ক */
+  /* 45%, 100% { opacity: 0; } তারপর 1s বিরতি */
+/* } */
+/*
+

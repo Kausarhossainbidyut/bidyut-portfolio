@@ -4,7 +4,8 @@ import { FaFileDownload, FaFolderOpen, FaGithub, FaLinkedinIn } from 'react-icon
 import heroImg from '../assets/hero.jpg'; // Add your image path here
 import { NavLink } from "react-router";
 import { Link } from 'react-router';
-
+import { Typewriter, Cursor } from "react-simple-typewriter";
+// import "./cursorStyle/cursorStyle.css";
 const About = () => {
     return (
         <section className="bg-gray-50 py-2  sm:px-6 md:px-0" >
@@ -20,12 +21,29 @@ const About = () => {
                         Hi, I'm <span className="text-blue-500">Bidyut</span>
                     </h1>
 
-                    <h2 className="text-2xl md:text-3xl  font-medium text-gray-600 mt-2">
-                        Team Leader |
+                    <h2 className="text-2xl md:text-3xl font-medium text-gray-600 mt-2">
+                       {" "}
+                        <span className="text-gray-600">
+                            <Typewriter
+                                words={[
+                                    "FullStack Developer",
+                                    "Problem Solver", 
+                                    "MERN Specialist",
+                                    "Project Management",
+                                ]}
+                                loop={0}                
+                                typeSpeed={150}         
+                                deleteSpeed={120}       
+                                delaySpeed={1800}      
+                            />
+                        </span>
+                        <span className="text-gray-600 ">
+                            <Cursor cursorStyle="|" cursorBlinking />
+                        </span>
                     </h2>
 
                     <p className="text-gray-600 text-[21px] mt-6 leading-relaxed ">
-                       I’m a dedicated full-stack developer specializing in the MERN stack, with solid project management experience. I enjoy building efficient, user-friendly applications and leading teams to deliver successful projects. 
+                        I’m a dedicated full-stack developer specializing in the MERN stack, with solid project management experience. I enjoy building efficient, user-friendly applications and leading teams to deliver successful projects.
                     </p>
 
                     <div className="flex flex-row gap-4 mt-8 justify-center md:justify-start">
