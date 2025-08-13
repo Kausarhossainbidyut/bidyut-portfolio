@@ -13,7 +13,7 @@ import { Link } from "react-router";
 const AboutMe = () => {
     return (
         <div>
-            <section className="max-w-7xl mx-auto px-6 py-16 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-lg flex flex-col md:flex-row gap-12">
+            <section id="about" className=" mx-auto px-6 py-16 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl shadow-lg flex flex-col md:flex-row gap-12">
 
                 {/* Left Image */}
                 <div className=" flex-1 rounded-2xl  shadow-lg">

@@ -8,7 +8,7 @@ import Projects from './components/Projects';
 
 const Home = () => {
   return (
-    <div>
+    <section id='home'>
       {/* dark:bg-[hsl(260,30%,10%)] */}
       <About></About>
       <AboutMe></AboutMe>
@@ -16,7 +16,7 @@ const Home = () => {
       <Education></Education>
       <Projects></Projects>
       <ContactForm></ContactForm>
-    </div>
+    </section>
   );
 };
 

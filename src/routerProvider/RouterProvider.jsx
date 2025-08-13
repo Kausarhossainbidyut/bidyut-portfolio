@@ -9,12 +9,12 @@ import Projects from "../components/Projects";
 
 
 export const router = createBrowserRouter([
-    {
+  {
     path: "/",
     element: <Layout></Layout>,
     children: [
       {
-        path: "/home",
+        index: true,
         element: <Home></Home>,
       },
       {
@@ -38,5 +38,5 @@ export const router = createBrowserRouter([
         element: <ContactForm></ContactForm>
       }
     ]
-    }
+  }
 ]);

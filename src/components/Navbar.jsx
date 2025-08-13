@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
-import { NavLink } from "react-router";
+
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -16,34 +16,34 @@ const Navbar = () => {
 
   const linksPage = <>
     <li className="hover:text-indigo-800 transition-colors duration-200">
-      <NavLink to={"/home"}>
+      <a href={"#home"} >
         Home
-      </NavLink>
+      </a>
     </li>
     <li className="hover:text-indigo-800 transition-colors duration-200">
-      <NavLink to={"/about"}>
+      <a href={"#about"}>
         About
-      </NavLink>
+      </a>
     </li>
     <li className="hover:text-indigo-800  transition-colors duration-200">
-      <NavLink to={"/skills"}>
+      <a href="#skills">
         Skills
-      </NavLink>
+      </a>
     </li>
     <li className="hover:text-indigo-800 transition-colors duration-200">
-      <NavLink to={"/education"}>
+      <a href="#education">
         Education
-      </NavLink>
+      </a>
     </li>
     <li className="hover:text-indigo-800 transition-colors duration-200">
-      <NavLink to={"/projects"}>
+      <a href="#projects">
         Projects
-      </NavLink>
+      </a>
     </li>
     <li className="hover:text-indigo-800 transition-colors duration-200">
-      <NavLink to={"/contact"}>
+      <a href="#contact">
         Contact
-      </NavLink>
+      </a>
     </li>
   </>;
 

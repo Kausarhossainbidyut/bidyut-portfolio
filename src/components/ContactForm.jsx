@@ -43,7 +43,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="py-8 bg-gradient-to-tr from-green-50 via-white to-green-50 min-h-screen flex flex-col md:flex-row md:px-[40px] mx-auto px-4 gap-8">
+    <section id="contact" className="py-8 bg-gradient-to-tr from-green-50 via-white to-green-50 min-h-screen flex flex-col md:flex-row md:px-[40px] mx-auto px-4 gap-8">
       {/* Left Info Panel */}
       <div className="md:w-1/2 bg-white rounded-2xl shadow-md p-8 flex flex-col justify-center space-y-6">
         <h2

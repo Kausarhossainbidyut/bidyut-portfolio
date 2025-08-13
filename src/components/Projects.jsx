@@ -76,7 +76,7 @@ const projectsData = [
 
 const Projects = () => {
   return (
-    <section className="py-16 px-6 max-w-7xl mx-auto">
+    <section id="projects" className="py-16 px-6 max-w-7xl mx-auto">
       <h2 className="text-4xl font-extrabold text-gray-900 mb-12 text-center select-none tracking-tight">
         My Projects
       </h2>

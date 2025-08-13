@@ -8,7 +8,7 @@ import { Typewriter, Cursor } from "react-simple-typewriter";
 // import "./cursorStyle/cursorStyle.css";
 const About = () => {
     return (
-        <section className="bg-gray-50 py-2  sm:px-6 md:px-0" >
+        <section className="bg-gray-50 py-17  sm:px-6 md:px-0" >
             <div className="px-[24px] mx-auto flex flex-col md:flex-row items-center ">
 
                 {/* Left Text */}

@@ -39,7 +39,7 @@ const educationData = [
 
 const Education = () => {
   return (
-    <section className="py-20 bg-gradient-to-br from-green-100 via-white to-green-100 min-h-screen">
+    <section id='education' className="py-20 bg-gradient-to-br from-green-100 via-white to-green-100 min-h-screen">
       <h2 className="text-5xl font-extrabold text-center mb-16 text-green-900 tracking-wide font-sans select-none">
         Education
       </h2>
