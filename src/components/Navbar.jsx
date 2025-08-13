@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router";
 
 
 const Navbar = () => {
@@ -16,9 +17,12 @@ const Navbar = () => {
 
   const linksPage = <>
     <li className="hover:text-indigo-800 transition-colors duration-200">
-      <a href={"#home"} >
+      <a  href={"#home"} > 
         Home
       </a>
+      {/* <Link to={"/home"}>
+      Home
+      </Link> */}
     </li>
     <li className="hover:text-indigo-800 transition-colors duration-200">
       <a href={"#about"}>
