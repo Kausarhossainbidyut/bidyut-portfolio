@@ -47,12 +47,12 @@ const About = () => {
                     </p>
 
                     <div className="flex flex-row gap-4 mt-8 justify-center md:justify-start">
-                        <NavLink to={'/projects'}
+                        <a href='#projects'
                             className="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow hover:shadow-lg hover:scale-102 cursor-pointer transition-all "
                         >
                             <FaFolderOpen size={20} />
                             View Projects
-                        </NavLink>
+                        </a>
                         <NavLink
                             className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-gray-800 via-blue-900 to-blue-800 text-white rounded-lg hover:shadow-lg hover:scale-102 cursor-pointer transition-all "
                         >

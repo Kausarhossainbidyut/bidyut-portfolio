@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router";
 //import { FaBoxOpen, FaFileAlt, FaUsers, FaLaptopCode } from "react-icons/fa";
 // import profileImage from "../assets/your-image.jpg"; // Replace with your image
 
@@ -56,9 +55,9 @@ const AboutMe = () => {
 
 
                     {/* Contact Button */}
-                    <Link to={'/contact'} className="inline-block max-w-max px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg shadow hover:shadow-lg hover:brightness-110 transition duration-300">
+                    <a href="#contact" className="inline-block max-w-max px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-medium rounded-lg shadow hover:shadow-lg hover:brightness-110 transition duration-300">
                         Contact Me
-                    </Link>
+                    </a>
 
                     {/* Stats */}
                     {/* <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-10 max-w-lg">
