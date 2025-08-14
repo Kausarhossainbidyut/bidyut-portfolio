@@ -43,47 +43,43 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-8 bg-gradient-to-tr from-green-50 via-white to-green-50 min-h-screen flex flex-col md:flex-row md:px-[40px] mx-auto px-4 gap-8">
+    <section
+      id="contact"
+      className="w-full bg-gradient-to-tr from-green-50 via-white to-green-50 flex flex-col md:flex-row gap-6 md:gap-12 px-4 sm:px-6 lg:px-8 py-8 md:py-12"
+    >
       {/* Left Info Panel */}
-      <div className="md:w-1/2 bg-white rounded-2xl shadow-md p-8 flex flex-col justify-center space-y-6">
+      <div className="w-full md:w-1/2 bg-white rounded-2xl shadow-md p-6 sm:p-8 flex flex-col justify-start md:justify-center space-y-6">
         <h2
-          className="text-3xl font-extrabold text-green-900 tracking-tight select-none"
+          className="text-2xl sm:text-3xl font-extrabold text-green-900 select-none"
           tabIndex={-1}
         >
           Connect with Me
         </h2>
 
-        <div className="space-y-5 text-gray-700 text-sm md:text-base">
-          <div className="flex items-center gap-3" aria-label="Email address">
-            <FaEnvelope className="text-green-600 w-5 h-5 md:w-6 md:h-6" />
-            <p
-              className="hover:text-green-700 focus:outline-none focus:ring-1 focus:ring-green-600 rounded transition"
-            >
-              khbidyut31@gmail.com
-            </p>
+        <div className="space-y-4 sm:space-y-5 text-gray-700 text-sm sm:text-base">
+          <div className="flex items-center gap-3">
+            <FaEnvelope className="text-green-600 w-5 h-5 sm:w-6 sm:h-6" />
+            <p>khbidyut31@gmail.com</p>
           </div>
-
-          <div className="flex items-center gap-3" aria-label="Phone number">
-            <FaPhoneAlt className="text-green-600 w-5 h-5 md:w-6 md:h-6" />
-            <span className="text-xs md:text-sm">+880 1796-343549</span>
+          <div className="flex items-center gap-3">
+            <FaPhoneAlt className="text-green-600 w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="text-xs sm:text-sm">+880 1796-343549</span>
           </div>
-          <div className="flex items-center gap-3" aria-label="Phone number">
-            <FaWhatsapp className="text-green-600 w-5 h-5 md:w-6 md:h-6" />
-            <span className="text-xs md:text-sm">+880 1796-343549</span>
+          <div className="flex items-center gap-3">
+            <FaWhatsapp className="text-green-600 w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="text-xs sm:text-sm">+880 1796-343549</span>
           </div>
-
-          <div className="flex items-center gap-3" aria-label="Location">
-            <FaMapMarkerAlt className="text-green-600 w-5 h-5 md:w-6 md:h-6" />
-            <span className="text-xs md:text-sm">Dhaka, Bangladesh</span>
+          <div className="flex items-center gap-3">
+            <FaMapMarkerAlt className="text-green-600 w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="text-xs sm:text-sm">Dhaka, Bangladesh</span>
           </div>
         </div>
 
-        <div className="flex space-x-6 mt-8 text-gray-700 text-xl md:text-2xl">
+        <div className="flex space-x-4 sm:space-x-6 mt-4 sm:mt-6 text-gray-700 text-xl sm:text-2xl">
           <a
             href="https://www.linkedin.com/in/kausarhossainbidyut"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="LinkedIn"
             className="hover:text-green-600 transition-colors"
           >
             <FaLinkedin />
@@ -92,7 +88,6 @@ const ContactForm = () => {
             href="https://github.com/Kausarhossainbidyut"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="GitHub"
             className="hover:text-green-600 transition-colors"
           >
             <FaGithub />
@@ -101,7 +96,6 @@ const ContactForm = () => {
             href="https://x.com/khbidyut31"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Twitter"
             className="hover:text-green-600 transition-colors"
           >
             <FaTwitter />
@@ -112,11 +106,11 @@ const ContactForm = () => {
       {/* Right Contact Form */}
       <form
         onSubmit={handleSubmit}
-        className="md:w-1/2 bg-white rounded-2xl shadow-md p-8 flex flex-col space-y-4"
+        className="w-full md:w-1/2 bg-white rounded-2xl shadow-md p-6 sm:p-8 flex flex-col justify-start md:justify-center space-y-4"
         aria-label="Contact form"
       >
         <h2
-          className="text-2xl font-extrabold text-green-900 mb-4 select-none"
+          className="text-xl sm:text-2xl font-extrabold text-green-900 mb-4 select-none"
           tabIndex={-1}
         >
           Send a Message
@@ -129,8 +123,7 @@ const ContactForm = () => {
           value={form.name}
           onChange={handleChange}
           required
-          aria-required="true"
-          className="border border-green-300 rounded-md p-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-green-400 transition shadow-sm"
+          className="border border-green-300 rounded-md p-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-400 transition shadow-sm"
           disabled={sending}
         />
 
@@ -141,8 +134,7 @@ const ContactForm = () => {
           value={form.email}
           onChange={handleChange}
           required
-          aria-required="true"
-          className="border border-green-300 rounded-md p-3 text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-green-400 transition shadow-sm"
+          className="border border-green-300 rounded-md p-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-400 transition shadow-sm"
           disabled={sending}
         />
 
@@ -153,15 +145,14 @@ const ContactForm = () => {
           value={form.message}
           onChange={handleChange}
           required
-          aria-required="true"
-          className="border border-green-300 rounded-md p-3 resize-none text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-green-400 transition shadow-sm"
+          className="border border-green-300 rounded-md p-3 resize-none text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-green-400 transition shadow-sm"
           disabled={sending}
         />
 
         <button
           type="submit"
           disabled={sending}
-          className={`bg-green-600 hover:bg-green-700 text-white font-semibold py-2 rounded-md transition shadow-sm ${
+          className={`bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 text-white font-semibold py-2 rounded-md transition shadow-md ${
             sending ? "opacity-70 cursor-not-allowed" : ""
           }`}
         >
@@ -170,7 +161,7 @@ const ContactForm = () => {
 
         {success === true && (
           <p
-            className="text-green-600 font-semibold mt-2"
+            className="text-green-600 font-semibold mt-2 text-sm sm:text-base"
             role="alert"
             tabIndex={0}
           >
@@ -179,7 +170,7 @@ const ContactForm = () => {
         )}
         {success === false && (
           <p
-            className="text-red-600 font-semibold mt-2"
+            className="text-red-600 font-semibold mt-2 text-sm sm:text-base"
             role="alert"
             tabIndex={0}
           >
