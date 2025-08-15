@@ -10,13 +10,13 @@ import Projects from "../components/Projects";
 
 export const router = createBrowserRouter([
   {
-    // path: "/home", ai ta tick 
-    path: "/",
+    path: "/", // ai ta tick 
+    // path: "/",
     element: <Layout></Layout>,
     children: [
       {
-        // index: true, ai ta tick
-        path: "/home",
+        index: true, //ai ta tick
+        // path: "/home",
         element: <Home></Home>,
       },
       {

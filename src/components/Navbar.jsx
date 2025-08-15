@@ -17,14 +17,15 @@ const Navbar = () => {
 
   const linksPage = <>
     <li className="hover:text-indigo-800 transition-colors duration-200">
-      <a href={"#home"}
-        onClick={(e) => { //home a no height 
-          e.preventDefault();
+      <a
+        href="#home"
+        onClick={() => {
           const el = document.querySelector("#home");
-          window.scrollTo({
-            top: el.offsetTop - 80, // header height
-            behavior: "smooth",
-          });
+          if (el) {
+            setTimeout(() => {
+              el.scrollIntoView({ behavior: "smooth" });
+            }, 0);
+          }
         }}
       >
         Home
@@ -66,8 +67,8 @@ const Navbar = () => {
   return (
     <header
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${scrolled
-          ? "bg-white/70 backdrop-blur-md shadow-md"
-          : "bg-gray-50"
+        ? "bg-white/70 backdrop-blur-md shadow-md"
+        : "bg-gray-50"
         }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-3 flex items-center justify-between">

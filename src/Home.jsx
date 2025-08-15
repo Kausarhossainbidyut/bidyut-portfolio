@@ -8,7 +8,7 @@ import Projects from './components/Projects';
 
 const Home = () => {
   return (
-    <section id='home'>
+    <section >
       {/* dark:bg-[hsl(260,30%,10%)] */}
       <About></About>
       <AboutMe></AboutMe>
