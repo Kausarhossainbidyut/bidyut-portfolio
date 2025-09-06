@@ -87,9 +87,14 @@ const Navbar = () => {
 
         {/* Right side buttons */}
         <div className="flex items-center space-x-3 md:space-x-4">
-          <a href="#resume" className={resumeBtnClasses}>
+          <a
+            href="https://drive.google.com/uc?export=download&id=1IuKFl0E7xZJ_F2aeEcHWQFpjA32KS8ZJ"
+            className={resumeBtnClasses}
+            download
+          >
             Resume
           </a>
+
 
           {/* Mobile menu toggle */}
           <button

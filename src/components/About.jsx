@@ -22,19 +22,19 @@ const About = () => {
                     </h1>
 
                     <h2 className="text-2xl md:text-3xl font-medium text-gray-600 mt-2">
-                       {" "}
+                        {" "}
                         <span className="text-gray-600">
                             <Typewriter
                                 words={[
                                     "FullStack Developer",
-                                    "Problem Solver", 
+                                    "Problem Solver",
                                     "MERN Specialist",
                                     "Project Management",
                                 ]}
-                                loop={0}                
-                                typeSpeed={150}         
-                                deleteSpeed={120}       
-                                delaySpeed={1800}      
+                                loop={0}
+                                typeSpeed={150}
+                                deleteSpeed={120}
+                                delaySpeed={1800}
                             />
                         </span>
                         <span className="text-gray-600 ">
@@ -53,12 +53,14 @@ const About = () => {
                             <FaFolderOpen size={20} />
                             View Projects
                         </a>
-                        <NavLink
+                        <a
+                            href="https://drive.google.com/uc?export=download&id=1IuKFl0E7xZJ_F2aeEcHWQFpjA32KS8ZJ"
                             className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-gray-800 via-blue-900 to-blue-800 text-white rounded-lg hover:shadow-lg hover:scale-102 cursor-pointer transition-all "
+                            download
                         >
                             <FaFileDownload size={20} />
                             Resume
-                        </NavLink>
+                        </a>
                     </div>
 
 
