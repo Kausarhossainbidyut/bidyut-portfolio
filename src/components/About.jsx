@@ -35,8 +35,8 @@ const About = () => {
     };
 
     return (
-        <section id='home' className="bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-8 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8">
-            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
+        <section id='home' className="bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50 dark:from-gray-900 dark:via-purple-950/20 dark:to-violet-950/20 py-16 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
 
                 {/* Left Text */}
                 <motion.div 
@@ -46,25 +46,25 @@ const About = () => {
                     animate="visible"
                 >
                     <motion.span 
-                        className="inline-block px-4 py-2 text-xs sm:text-sm bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 rounded-full font-semibold shadow-sm"
+                        className="inline-block px-4 py-2 text-xs sm:text-sm bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40 text-indigo-700 dark:text-indigo-300 rounded-full font-semibold shadow-sm"
                         variants={itemVariants}
                     >
                         👋 Welcome to my portfolio
                     </motion.span>
 
                     <motion.h1 
-                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mt-6 md:mt-10"
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mt-6 md:mt-10 text-gray-900 dark:text-white"
                         variants={itemVariants}
                     >
                         Hi, I'm <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Bidyut</span>
                     </motion.h1>
 
                     <motion.h2 
-                        className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-700 mt-3 md:mt-4"
+                        className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mt-3 md:mt-4"
                         variants={itemVariants}
                     >
                         {" "}
-                        <span className="text-gray-600">
+                        <span className="text-gray-600 dark:text-gray-400">
                             <Typewriter
                                 words={[
                                     "FullStack Developer",
@@ -78,13 +78,13 @@ const About = () => {
                                 delaySpeed={1800}
                             />
                         </span>
-                        <span className="text-gray-600">
+                        <span className="text-gray-600 dark:text-gray-400">
                             <Cursor cursorStyle="|" cursorBlinking />
                         </span>
                     </motion.h2>
 
                     <motion.p 
-                        className="text-gray-600 text-base sm:text-lg md:text-xl mt-4 md:mt-6 leading-relaxed max-w-2xl mx-auto md:mx-0"
+                        className="text-gray-600 dark:text-gray-400 text-base sm:text-lg md:text-xl mt-4 md:mt-6 leading-relaxed max-w-2xl mx-auto md:mx-0"
                         variants={itemVariants}
                     >
                         I'm a dedicated full-stack developer specializing in the MERN stack, with solid project management experience. I enjoy building efficient, user-friendly applications and leading teams to deliver successful projects.
@@ -162,15 +162,17 @@ const About = () => {
                     animate="visible"
                 >
                     <motion.div 
-                        className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white ring-4 ring-indigo-200"
+                        className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white dark:border-gray-700 ring-4 ring-indigo-200 dark:ring-indigo-800 group"
                         whileHover={{ scale: 1.05, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 200, damping: 20 }}
                     >
                         <img
                             src={heroImg}
                             alt="Portrait of Bidyut, full stack developer"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
+                        {/* Subtle overlay in dark mode for better contrast */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/20 to-transparent dark:from-indigo-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </motion.div>
                 </motion.div>
             </div>

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-6 sm:py-8">
+    <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-black dark:via-gray-900 dark:to-black text-white py-6 sm:py-8">
       <motion.div 
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         initial={{ opacity: 0, y: 20 }}
@@ -19,21 +19,21 @@ const Footer = () => {
             Bidyut.
           </motion.div>
           
-          <p className="text-center text-sm sm:text-base text-gray-300">
+          <p className="text-center text-sm sm:text-base text-gray-300 dark:text-gray-400">
             Full Stack Developer | MERN Specialist | Problem Solver
           </p>
           
           <div className="w-20 h-0.5 bg-gradient-to-r from-transparent via-indigo-500 to-transparent"></div>
           
           <motion.p 
-            className="text-center text-xs sm:text-sm text-gray-400"
+            className="text-center text-xs sm:text-sm text-gray-400 dark:text-gray-500"
             whileHover={{ scale: 1.02 }}
           >
             © {new Date().getFullYear()} Md Kausar Hossain Bidyut. All rights reserved.
           </motion.p>
           
-          <p className="text-center text-xs text-gray-500">
-            Built with ❤️ using React & Vite
+          <p className="text-center text-xs text-gray-500 dark:text-gray-600">
+            Built with ❤️ 
           </p>
         </div>
       </motion.div>

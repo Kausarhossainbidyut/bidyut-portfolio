@@ -1,5 +1,4 @@
 import React from 'react';
-import { useInView } from 'react-intersection-observer';
 import { FaGraduationCap, FaSchool, FaLaptopCode } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
@@ -9,32 +8,44 @@ const educationData = [
     institution: "Green University of Bangladesh",
     startYear: 2023,
     passingYear: "Running",
-    details: "Currently pursuing Bachelor’s degree in CSE.",
-    icon: <FaGraduationCap className="text-green-600 w-6 h-6" />
+    details: "Currently pursuing Bachelor's degree in CSE with focus on software development and modern technologies.",
+    icon: <FaGraduationCap className="w-6 h-6" />,
+    gradient: "from-purple-600 via-violet-600 to-fuchsia-600",
+    iconColor: "text-purple-600 dark:text-purple-400",
+    bgGlow: "bg-purple-500/10"
   },
   {
     degree: "Higher Secondary Certificate (HSC)",
     institution: "Altaf Golongag College",
     startYear: 2022,
     passingYear: 2024,
-    details: "I completed my HSC in Science department.",
-    icon: <FaSchool className="text-yellow-500 w-6 h-6" />
+    details: "Completed Higher Secondary education in Science department.",
+    icon: <FaSchool className="w-6 h-6" />,
+    gradient: "from-indigo-600 via-purple-600 to-pink-600",
+    iconColor: "text-indigo-600 dark:text-indigo-400",
+    bgGlow: "bg-indigo-500/10"
   },
   {
     degree: "Secondary School Certificate (SSC)",
     institution: "Immam Hossain High School",
     startYear: 2020,
     passingYear: 2022,
-    details: "I completed my SSC in Science department.",
-    icon: <FaSchool className="text-blue-500 w-6 h-6" />
+    details: "Completed Secondary education in Science department.",
+    icon: <FaSchool className="w-6 h-6" />,
+    gradient: "from-violet-600 via-purple-600 to-fuchsia-600",
+    iconColor: "text-violet-600 dark:text-violet-400",
+    bgGlow: "bg-violet-500/10"
   },
   {
-    degree: "Programming Hero & Web Development Course",
+    degree: "Web Development Bootcamp",
     institution: "Programming Hero",
     startYear: 2024,
     passingYear: 2025,
-    details: "Completed courses on programming fundamentals and web development.",
-    icon: <FaLaptopCode className="text-purple-600 w-6 h-6" />
+    details: "Intensive bootcamp covering MERN stack, modern JavaScript, and full-stack development.",
+    icon: <FaLaptopCode className="w-6 h-6" />,
+    gradient: "from-fuchsia-600 via-pink-600 to-rose-600",
+    iconColor: "text-fuchsia-600 dark:text-fuchsia-400",
+    bgGlow: "bg-fuchsia-500/10"
   }
 ];
 
@@ -44,60 +55,15 @@ const Education = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.3
+        staggerChildren: 0.2
       }
     }
   };
 
-  return (
-    <section id='education' className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-green-50 via-white to-green-100">
-      <motion.h2 
-        className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-12 md:mb-16 text-green-900 tracking-wide select-none"
-        initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        My <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">Education</span>
-      </motion.h2>
-
-      <motion.div 
-        className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-8"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        {/* Vertical timeline line */}
-        <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-0.5 sm:w-1 bg-gradient-to-b from-green-300 via-green-400 to-green-500 rounded-full hidden sm:block"></div>
-
-        <div className="space-y-8 md:space-y-12">
-          {educationData.map((edu, index) => (
-            <EducationCard key={index} edu={edu} index={index} />
-          ))}
-        </div>
-      </motion.div>
-    </section>
-  );
-};
-
-const EducationCard = ({ edu, index }) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
-
-  const isEven = index % 2 === 0;
-
-  const cardVariants = {
-    hidden: { 
-      opacity: 0,
-      x: isEven ? -50 : 50,
-      y: 20
-    },
+  const titleVariants = {
+    hidden: { opacity: 0, y: -20 },
     visible: {
       opacity: 1,
-      x: 0,
       y: 0,
       transition: {
         duration: 0.6,
@@ -107,50 +73,142 @@ const EducationCard = ({ edu, index }) => {
   };
 
   return (
-    <motion.article
-      ref={ref}
-      tabIndex={0}
-      aria-label={`${edu.degree} details`}
-      className="relative pl-16 sm:pl-20 md:pl-24 cursor-pointer focus:outline-none focus:ring-4 focus:ring-green-400 rounded-xl"
+    <section id='education' className="py-16  bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.h2
+          variants={titleVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-4 text-gray-900 dark:text-white"
+        >
+          My Education
+        </motion.h2>
+        
+        <motion.p
+          variants={titleVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="text-center text-gray-600 dark:text-gray-400 mb-12 md:mb-16 max-w-2xl mx-auto"
+        >
+          My academic journey and professional learning experiences
+        </motion.p>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="relative space-y-6"
+        >
+          {/* Timeline line */}
+          <div className="hidden md:block absolute left-6 top-8 bottom-8 w-0.5 bg-gradient-to-b from-purple-200 via-indigo-200 to-pink-200 dark:from-purple-800 dark:via-indigo-800 dark:to-pink-800"></div>
+          
+          {educationData.map((edu, index) => (
+            <EducationCard key={index} edu={edu} />
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const EducationCard = ({ edu }) => {
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      x: -50,
+      scale: 0.95
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const iconVariants = {
+    hover: {
+      scale: 1.1,
+      rotate: [0, -10, 10, -10, 0],
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
+  return (
+    <motion.div
       variants={cardVariants}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      whileHover={{ scale: 1.02, x: 10 }}
-      transition={{ type: "spring", stiffness: 200, damping: 20 }}
+      whileHover={{ y: -4, transition: { duration: 0.3 } }}
+      className="relative group"
     >
-      {/* Icon bubble */}
-      <motion.div 
-        className="absolute left-0 top-1 sm:top-1.5 md:top-3 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border-4 border-green-500 flex items-center justify-center shadow-xl"
-        whileHover={{ scale: 1.3, rotate: 360, borderColor: "#10b981" }}
-        transition={{ duration: 0.5 }}
-      >
-        {edu.icon}
-      </motion.div>
+      {/* Card */}
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-200 dark:border-gray-700 relative overflow-hidden">
+        {/* Gradient overlay on hover */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${edu.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+        
+        {/* Glow effect */}
+        <div className={`absolute -inset-0.5 ${edu.bgGlow} rounded-xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10`}></div>
+        
+        <div className="flex items-start gap-4 md:gap-6 relative z-10">
+          {/* Icon with timeline dot */}
+          <div className="flex-shrink-0 relative">
+            {/* Timeline dot (hidden on mobile) */}
+            <div className={`hidden md:block absolute -left-[4.5rem] top-2 w-4 h-4 rounded-full bg-gradient-to-br ${edu.gradient} shadow-lg ring-4 ring-white dark:ring-gray-900`}></div>
+            
+            {/* Icon container */}
+            <motion.div
+              variants={iconVariants}
+              whileHover="hover"
+              className={`w-14 h-14 rounded-xl bg-gradient-to-br ${edu.gradient} flex items-center justify-center shadow-lg`}
+            >
+              <span className="text-white">
+                {edu.icon}
+              </span>
+            </motion.div>
+          </div>
 
-      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-green-700 mb-2 md:mb-3 tracking-tight leading-tight">
-        {edu.degree}
-      </h3>
-
-      {edu.institution && (
-        <p className="text-gray-600 italic mb-2 md:mb-3 text-base sm:text-lg font-medium tracking-wide">
-          {edu.institution}
-        </p>
-      )}
-
-      {(edu.startYear || edu.passingYear) && (
-        <p className="text-green-600 font-semibold mb-4 md:mb-6 tracking-wide text-sm sm:text-base">
-          {edu.startYear ? `Start Year: ${edu.startYear}` : ""}
-          {edu.startYear && edu.passingYear ? "  |  " : ""}
-          {edu.passingYear ? `Passing Year: ${edu.passingYear}` : ""}
-        </p>
-      )}
-
-      {edu.details && (
-        <p className="text-gray-800 leading-relaxed text-sm sm:text-base font-normal">
-          {edu.details}
-        </p>
-      )}
-    </motion.article>
+          {/* Content */}
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:bg-gradient-to-r group-hover:from-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+              {edu.degree}
+            </h3>
+            
+            {edu.institution && (
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-2 font-medium">
+                📍 {edu.institution}
+              </p>
+            )}
+            
+            {(edu.startYear || edu.passingYear) && (
+              <div className={`inline-flex items-center gap-2 text-xs sm:text-sm font-semibold mb-3 px-3 py-1.5 rounded-full bg-gradient-to-r ${edu.gradient} text-white shadow-sm`}>
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
+                </svg>
+                <span>
+                  {edu.startYear} {edu.passingYear && `- ${edu.passingYear}`}
+                </span>
+              </div>
+            )}
+            
+            {edu.details && (
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 leading-relaxed">
+                {edu.details}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.div>
   );
 };
 

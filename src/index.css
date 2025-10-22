@@ -1,6 +1,63 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* Tailwind v4 Dark Mode Configuration - CRITICAL */
+@theme {
+  --color-scheme: light dark;
+}
+
+/* Dark mode variant configuration */
+@variant dark (&:where(.dark, .dark *));
+
+/* ===================================
+   UNIFIED COLOR SYSTEM
+   =================================== */
+
+:root {
+  /* Primary Brand Colors - Purple/Violet Spectrum */
+  --color-primary-start: #6366f1;    /* Indigo-500 */
+  --color-primary-mid: #8b5cf6;      /* Violet-500 */
+  --color-primary-end: #a855f7;      /* Purple-500 */
+  
+  /* Secondary Accent - Complementary Colors */
+  --color-accent-blue: #3b82f6;      /* Blue-500 */
+  --color-accent-pink: #ec4899;      /* Pink-500 */
+  --color-accent-cyan: #06b6d4;      /* Cyan-500 */
+  
+  /* Section-Specific Colors (Harmonious Palette) */
+  --color-hero: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  --color-about: linear-gradient(135deg, #8b5cf6, #a855f7, #d946ef);
+  --color-skills: linear-gradient(135deg, #6366f1, #7c3aed, #9333ea);
+  --color-education: linear-gradient(135deg, #a855f7, #d946ef, #ec4899);
+  --color-projects: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  --color-certificates: linear-gradient(135deg, #7c3aed, #9333ea, #c026d3);
+  --color-contact: linear-gradient(135deg, #a855f7, #c026d3, #ec4899);
+  
+  /* Neutral Colors */
+  --color-text-primary: #1f2937;     /* Gray-800 */
+  --color-text-secondary: #6b7280;   /* Gray-500 */
+  --color-bg-light: #ffffff;
+  --color-bg-soft: #f9fafb;          /* Gray-50 */
+}
+
+.dark {
+  /* Dark Mode Adjustments */
+  --color-text-primary: #f3f4f6;     /* Gray-100 */
+  --color-text-secondary: #9ca3af;   /* Gray-400 */
+  --color-bg-light: #1f2937;         /* Gray-800 */
+  --color-bg-soft: #111827;          /* Gray-900 */
+}
+
+/* Dark mode transitions */
+*, *::before, *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Prevent transitions on page load */
+.preload * {
+  transition: none !important;
+}
+
 /* Smooth scroll margin for anchors */
 [id] {
   scroll-margin-top: 80px;
@@ -21,6 +78,35 @@ html {
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   overflow-x: hidden;
+  /* Light mode background - Soft purple-gray gradient */
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 25%, #e9d5ff 50%, #f3e8ff 75%, #faf5ff 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  min-height: 100vh;
+  color: #1a202c;
+  transition: background 0.5s ease, color 0.3s ease;
+}
+
+/* Dark mode body background */
+.dark body {
+  /* Deep dark purple-tinted background */
+  background: linear-gradient(135deg, #0f0a1e 0%, #1a1229 25%, #1e1535 50%, #1a1229 75%, #0f0a1e 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: #e5e7eb;
+}
+
+/* Smooth background gradient animation */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Custom scrollbar - Desktop only */
@@ -33,10 +119,18 @@ body {
     background: linear-gradient(to bottom, #f3f4f6, #e5e7eb);
   }
 
+  .dark ::-webkit-scrollbar-track {
+    background: linear-gradient(to bottom, #1f2937, #111827);
+  }
+
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #6366f1, #8b5cf6, #ec4899);
+    background: linear-gradient(to bottom, #6366f1, #8b5cf6, #a855f7);
     border-radius: 10px;
     border: 2px solid #f3f4f6;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    border: 2px solid #1f2937;
   }
 
   ::-webkit-scrollbar-thumb:hover {
@@ -68,14 +162,40 @@ img {
   display: block;
 }
 
+/* Dark mode image adjustments - subtle only */
+.dark img {
+  filter: brightness(0.95);
+  transition: filter 0.3s ease;
+}
+
+.dark img:hover {
+  filter: brightness(1);
+}
+
+/* Better image rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
 /* Better selection color */
 ::selection {
-  background-color: #6366f1;
+  background-color: #8b5cf6;
   color: white;
 }
 
 ::-moz-selection {
-  background-color: #6366f1;
+  background-color: #8b5cf6;
+  color: white;
+}
+
+.dark ::selection {
+  background-color: #a855f7;
+  color: white;
+}
+
+.dark ::-moz-selection {
+  background-color: #a855f7;
   color: white;
 }
 
@@ -127,6 +247,71 @@ img {
   }
 }
 
+/* Enhanced card shadows for dark mode */
+.dark .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+}
+
+.dark .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -4px rgba(0, 0, 0, 0.5);
+}
+
+.dark .shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+}
+
+/* Better contrast for cards in dark mode */
+.dark .bg-white {
+  background-color: #1f2937 !important;
+  border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+/* Improved text contrast in dark mode */
+.dark .text-gray-900 {
+  color: #f3f4f6 !important;
+}
+
+.dark .text-gray-800 {
+  color: #e5e7eb !important;
+}
+
+.dark .text-gray-700 {
+  color: #d1d5db !important;
+}
+
+.dark .text-gray-600 {
+  color: #9ca3af !important;
+}
+
+/* Glowing effect for interactive elements in dark mode */
+.dark button:hover,
+.dark a:hover {
+  filter: brightness(1.1);
+}
+
+/* Better borders in dark mode */
+.dark .border-gray-200 {
+  border-color: rgba(75, 85, 99, 0.3) !important;
+}
+
+.dark .border-gray-300 {
+  border-color: rgba(75, 85, 99, 0.4) !important;
+}
+
+/* Improved background colors for sections */
+.dark .bg-gray-50 {
+  background-color: #111827 !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: #1f2937 !important;
+}
+
+/* Better gradient text visibility in dark mode */
+.dark .bg-gradient-to-r {
+  filter: brightness(1.2);
+}
+
 /* Responsive container */
 .container-custom {
   width: 100%;
@@ -149,4 +334,115 @@ img {
     padding-left: 2rem;
     padding-right: 2rem;
   }
+}
+
+/* ===================================
+   UTILITY CLASSES - Reusable Gradients
+   =================================== */
+
+/* Primary Brand Gradient */
+.gradient-primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+}
+
+.gradient-primary-text {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Section-Specific Gradients */
+.gradient-hero {
+  background: linear-gradient(135deg, #faf5ff, #f3e8ff, #e9d5ff);
+}
+
+.dark .gradient-hero {
+  background: linear-gradient(135deg, #1e1535, #2d1b4e, #1e1535);
+}
+
+.gradient-about {
+  background: linear-gradient(135deg, #f9fafb, #faf5ff, #f3e8ff);
+}
+
+.dark .gradient-about {
+  background: linear-gradient(135deg, #111827, #1a1229, #1f2937);
+}
+
+.gradient-skills {
+  background: linear-gradient(135deg, #faf5ff, #f3e8ff, #ede9fe);
+}
+
+.dark .gradient-skills {
+  background: linear-gradient(135deg, #111827, #1e1535, #1f2937);
+}
+
+.gradient-education {
+  background: linear-gradient(135deg, #fdf4ff, #fae8ff, #f5d0fe);
+}
+
+.dark .gradient-education {
+  background: linear-gradient(135deg, #111827, #1a1229, #1e1535);
+}
+
+.gradient-projects {
+  background: linear-gradient(135deg, #faf5ff, #ede9fe, #e9d5ff);
+}
+
+.dark .gradient-projects {
+  background: linear-gradient(135deg, #0f0a1e, #1e1535, #111827);
+}
+
+.gradient-certificates {
+  background: linear-gradient(135deg, #f3e8ff, #e9d5ff, #f5d0fe);
+}
+
+.dark .gradient-certificates {
+  background: linear-gradient(135deg, #1a1229, #1e1535, #2d1b4e);
+}
+
+.gradient-contact {
+  background: linear-gradient(135deg, #fdf4ff, #fae8ff, #f9fafb);
+}
+
+.dark .gradient-contact {
+  background: linear-gradient(135deg, #1e1535, #1a1229, #111827);
+}
+
+/* Button Gradients */
+.btn-gradient-primary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  transition: all 0.3s ease;
+}
+
+.btn-gradient-primary:hover {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed, #9333ea);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+}
+
+/* Accent Gradients */
+.gradient-accent-blue {
+  background: linear-gradient(135deg, #3b82f6, #6366f1, #8b5cf6);
+}
+
+.gradient-accent-pink {
+  background: linear-gradient(135deg, #a855f7, #d946ef, #ec4899);
+}
+
+.gradient-accent-success {
+  background: linear-gradient(135deg, #10b981, #06b6d4, #3b82f6);
+}
+
+/* Card Hover Effects */
+.card-hover-glow {
+  transition: all 0.3s ease;
+}
+
+.card-hover-glow:hover {
+  box-shadow: 0 20px 50px rgba(139, 92, 246, 0.2);
+  transform: translateY(-5px);
+}
+
+.dark .card-hover-glow:hover {
+  box-shadow: 0 20px 50px rgba(139, 92, 246, 0.3);
 }

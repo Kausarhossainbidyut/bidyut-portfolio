@@ -36,11 +36,11 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-indigo-50 to-purple-50">
+    <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 via-violet-50 to-fuchsia-50 dark:from-gray-900 dark:via-purple-950/20 dark:to-violet-950/20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.h2 
-          className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 md:mb-8 text-center select-none tracking-tight"
+          className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white mb-8 md:mb-12 text-center select-none tracking-tight"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -51,7 +51,7 @@ const Projects = () => {
 
         {/* Category Filter */}
         <motion.div 
-          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 md:mb-12"
+          className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-12 md:mb-14"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -64,7 +64,7 @@ const Projects = () => {
               className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 ${
                 activeCategory === category
                   ? "bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg"
-                  : "bg-white text-gray-700 hover:bg-gray-100 shadow-md"
+                  : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 shadow-md"
               }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -88,7 +88,7 @@ const Projects = () => {
             key={project.id}
             variants={cardVariants}
             whileHover={{ y: -10, boxShadow: "0 25px 50px rgba(99, 102, 241, 0.2)" }}
-            className="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 flex flex-col group relative"
+            className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 flex flex-col group relative"
           >
             {/* Featured Badge */}
             {project.featured && (
@@ -105,18 +105,18 @@ const Projects = () => {
             )}
 
             {/* Image Container */}
-            <div className="relative overflow-hidden h-48 sm:h-52 md:h-56">
+            <div className="relative overflow-hidden h-48 sm:h-52 md:h-56 bg-gray-100 dark:bg-gray-800">
               <motion.img
                 src={project.image}
                 alt={project.name}
-                className="w-full h-full object-cover"
-                whileHover={{ scale: 1.1 }}
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.4 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent dark:from-black/80 dark:via-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
-                  <span className="bg-white/90 backdrop-blur-sm text-indigo-600 px-3 py-1 rounded-full text-xs font-bold">
+                  <span className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-indigo-600 dark:text-indigo-400 px-3 py-1 rounded-full text-xs font-bold">
                     {project.category}
                   </span>
                 </div>
@@ -127,11 +127,11 @@ const Projects = () => {
             <div className="p-5 sm:p-6 flex flex-col flex-grow">
               {/* Title & Year */}
               <div className="flex items-start justify-between mb-3">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors flex-1">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors flex-1">
                   {project.name}
                 </h3>
                 {project.year && (
-                  <div className="flex items-center gap-1 text-gray-500 text-xs ml-2">
+                  <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400 text-xs ml-2">
                     <FaCalendar size={10} />
                     <span>{project.year}</span>
                   </div>
@@ -140,7 +140,7 @@ const Projects = () => {
 
               {/* Short Description */}
               {project.shortDescription && (
-                <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
                   {project.shortDescription}
                 </p>
               )}
@@ -150,13 +150,13 @@ const Projects = () => {
                 {project.techStack.slice(0, 3).map((tech, idx) => (
                   <span
                     key={idx}
-                    className="text-xs bg-indigo-50 text-indigo-600 px-2 py-1 rounded-md font-medium"
+                    className="text-xs bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-1 rounded-md font-medium"
                   >
                     {tech}
                   </span>
                 ))}
                 {project.techStack.length > 3 && (
-                  <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-md font-medium">
+                  <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md font-medium">
                     +{project.techStack.length - 3} more
                   </span>
                 )}
@@ -191,7 +191,7 @@ const Projects = () => {
             onClick={() => setSelectedProject(null)}
           >
             <motion.div
-              className="bg-white rounded-2xl shadow-2xl max-w-full sm:max-w-lg md:max-w-2xl lg:max-w-3xl w-full p-6 sm:p-8 relative overflow-y-auto max-h-[90vh]"
+              className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-full sm:max-w-lg md:max-w-2xl lg:max-w-3xl w-full p-6 sm:p-8 relative overflow-y-auto max-h-[90vh]"
               initial={{ scale: 0.8, y: 50, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
               exit={{ scale: 0.8, y: 50, opacity: 0 }}
@@ -208,25 +208,29 @@ const Projects = () => {
               &times;
             </motion.button>
 
-            <motion.img
-              src={selectedProject.image}
-              alt={selectedProject.name}
-              className="w-full h-56 sm:h-64 md:h-72 object-cover rounded-xl mb-6 shadow-lg"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-            />
+            <div className="relative overflow-hidden rounded-xl mb-6">
+              <motion.img
+                src={selectedProject.image}
+                alt={selectedProject.name}
+                className="w-full h-56 sm:h-64 md:h-72 object-cover shadow-lg"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              />
+              {/* Dark mode overlay for better contrast */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent dark:from-black/30"></div>
+            </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold mb-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">{selectedProject.name}</h3>
 
-            <p className="mb-6 text-sm sm:text-base text-gray-700 leading-relaxed">{selectedProject.description}</p>
+            <p className="mb-6 text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">{selectedProject.description}</p>
 
             <div className="mb-6">
-              <strong className="text-lg text-gray-900">Main Technology Stack:</strong>
+              <strong className="text-lg text-gray-900 dark:text-white">Main Technology Stack:</strong>
               <div className="flex flex-wrap gap-2 mt-3">
                 {selectedProject.techStack.map((tech, idx) => (
                   <motion.span
                     key={idx}
-                    className="bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm"
+                    className="bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/40 dark:to-purple-900/40 text-indigo-700 dark:text-indigo-300 text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm"
                     initial={{ opacity: 0, scale: 0 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.3 + idx * 0.05 }}
@@ -241,19 +245,19 @@ const Projects = () => {
             {/* Features List */}
             {selectedProject.features && selectedProject.features.length > 0 && (
               <div className="mb-6">
-                <strong className="text-lg text-gray-900 flex items-center gap-2">
+                <strong className="text-lg text-gray-900 dark:text-white flex items-center gap-2">
                   <FaStar className="text-yellow-500" /> Key Features:
                 </strong>
                 <ul className="mt-3 space-y-2">
                   {selectedProject.features.map((feature, idx) => (
                     <motion.li
                       key={idx}
-                      className="flex items-start gap-2 text-sm sm:text-base text-gray-700"
+                      className="flex items-start gap-2 text-sm sm:text-base text-gray-700 dark:text-gray-300"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.4 + idx * 0.1 }}
                     >
-                      <span className="text-indigo-600 mt-1">✓</span>
+                      <span className="text-indigo-600 dark:text-indigo-400 mt-1">✓</span>
                       <span>{feature}</span>
                     </motion.li>
                   ))}
@@ -261,11 +265,11 @@ const Projects = () => {
               </div>
             )}
 
-            <p className="mb-4 sm:mb-6 text-sm sm:text-base text-gray-700">
-              <strong className="text-gray-900">Challenges Faced:</strong> {selectedProject.challenges}
+            <p className="mb-4 sm:mb-6 text-sm sm:text-base text-gray-700 dark:text-gray-300">
+              <strong className="text-gray-900 dark:text-white">Challenges Faced:</strong> {selectedProject.challenges}
             </p>
-            <p className="mb-6 sm:mb-8 text-sm sm:text-base text-gray-700">
-              <strong className="text-gray-900">Potential Improvements & Future Plans:</strong>{" "}
+            <p className="mb-6 sm:mb-8 text-sm sm:text-base text-gray-700 dark:text-gray-300">
+              <strong className="text-gray-900 dark:text-white">Potential Improvements & Future Plans:</strong>{" "}
               {selectedProject.improvements}
             </p>
 
