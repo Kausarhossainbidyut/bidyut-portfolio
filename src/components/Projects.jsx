@@ -1,195 +1,315 @@
 import React, { useState } from "react";
-import { FaGithub, FaExternalLinkAlt, FaEye } from "react-icons/fa";
-
-const projectsData = [
-  {
-    id: 1,
-    name: "BloodConnect",
-    image: "https://i.ibb.co/BMPNmmX/finall-project.jpg",
-    techStack: [
-      "React",
-      "Node.js",
-      "Express.js",
-      "JavaScript",
-      "Tailwind CSS",
-      "MongoDB",
-      "HTML",
-      "CSS",
-    ],
-    description:
-      "BloodConnect is a community-driven platform that bridges the gap between blood donors and recipients. It empowers users to save lives by making blood donation accessible, easy, and impactful through real-time connectivity and seamless user experience.",
-    liveLink: "https://assignment-12-b4719.web.app/",
-    githubClient: "https://github.com/Kausarhossainbidyut/BloodConnect-client-side",
-    challenges:
-      "Ensuring smooth real-time updates for donor availability, optimizing backend API performance under high load, and maintaining secure user authentication across devices.",
-    improvements:
-      "Integrate a blog section for awareness articles, implement multi-language support for wider reach, and add an AI-powered matching system to improve donor-recipient pairing.",
-  },
-  {
-    id: 2,
-    name: "FoodBond",
-    image: "https://i.ibb.co/4hVwkPv/res.jpg",
-    techStack: [
-      "React",
-      "Node.js",
-      "Express.js",
-      "JavaScript",
-      "Tailwind CSS",
-      "MongoDB",
-      "HTML",
-      "CSS",
-    ],
-    description:
-      "FoodBond connects food lovers to promote sharing and reduce food waste. The platform encourages users to discover, share, and enjoy delicious food responsibly, fostering a sustainable community-driven movement towards food conservation.",
-    liveLink: "https://assignment-11-2a60f.web.app/",
-    githubClient: "https://github.com/Kausarhossainbidyut/FoodBond-client-side",
-    challenges:
-      "Managing complex application state with numerous user interactions, securing online transactions, and handling inventory updates in real-time.",
-    improvements:
-      "Introduce personalized product recommendations based on user preferences and history, enable user reviews and ratings for better trust, and add social sharing features.",
-  },
-  {
-    id: 3,
-    name: "GreenNest",
-    image: "https://i.ibb.co/hxjfJmtb/project-2.jpg",
-    techStack: [
-      "React",
-      "Node.js",
-      "Express.js",
-      "JavaScript",
-      "Tailwind CSS",
-      "MongoDB",
-      "HTML",
-      "CSS",
-    ],
-    description:
-      "GreenNest is a vibrant community platform for gardeners to connect, exchange expert tips, discover local gardening events, and nurture their passion for plants. It promotes collaboration and knowledge sharing among gardening enthusiasts.",
-    liveLink: "https://assignment-10-b19a1.web.app/",
-    githubClient: "https://github.com/Kausarhossainbidyut/GreenNests-client-side",
-    challenges:
-      "Implementing real-time data synchronization between users, resolving conflicts from concurrent edits, and ensuring a seamless UX on both desktop and mobile devices.",
-    improvements:
-      "Develop a mobile app for on-the-go gardening help, add offline mode for access without internet, and introduce AI-based plant disease detection to assist gardeners.",
-  },
-];
+import { FaGithub, FaExternalLinkAlt, FaEye, FaCode, FaStar, FaCalendar } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { projectsData, getCategories } from "../data/projectsData";
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const categories = getCategories();
+
+  // Filter projects by category
+  const filteredProjects = activeCategory === "All" 
+    ? projectsData 
+    : projectsData.filter(project => project.category === activeCategory);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
 
   return (
-    <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <h2 className="text-4xl font-extrabold text-gray-900 mb-12 text-center select-none tracking-tight">
-        My Projects
-      </h2>
-
-      <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {projectsData.map((project) => (
-          <div
-            key={project.id}
-            className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 flex flex-col"
-          >
-            <img
-              src={project.image}
-              alt={project.name}
-              className="w-full h-56 sm:h-48 md:h-56 lg:h-60 object-cover"
-            />
-
-            <div className="p-4 sm:p-6 flex flex-col flex-grow">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">
-                {project.name}
-              </h3>
-
-              <button
-                onClick={() => setSelectedProject(project)}
-                className="flex cursor-pointer items-center justify-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 sm:px-5 py-2 rounded-xl text-sm sm:text-base font-semibold shadow-md hover:shadow-xl transition-all duration-300"
-              >
-                <FaEye className="text-white" />
-                View More
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Modal */}
-      {selectedProject && (
-        <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm flex items-center justify-center z-50 px-4 sm:px-6"
-          onClick={() => setSelectedProject(null)}
+    <section id="projects" className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-indigo-50 to-purple-50">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <motion.h2 
+          className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 md:mb-8 text-center select-none tracking-tight"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <div
-            className="bg-white rounded-lg shadow-lg max-w-full sm:max-w-lg md:max-w-2xl w-full p-4 sm:p-6 relative overflow-y-auto max-h-[90vh] transform scale-95 opacity-0 transition-all duration-300 ease-out animate-[fadeIn_0.3s_ease-out_forwards]"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="absolute cursor-pointer top-1 right-1 text-gray-600 hover:text-gray-900 text-4xl sm:text-3xl font-bold"
+          My <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Projects</span>
+        </motion.h2>
+
+        {/* Category Filter */}
+        <motion.div 
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 md:mb-12"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+        >
+          {categories.map((category) => (
+            <motion.button
+              key={category}
+              onClick={() => setActiveCategory(category)}
+              className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 ${
+                activeCategory === category
+                  ? "bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white shadow-lg"
+                  : "bg-white text-gray-700 hover:bg-gray-100 shadow-md"
+              }`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              &times;
-            </button>
+              {category}
+            </motion.button>
+          ))}
+        </motion.div>
 
-            <img
-              src={selectedProject.image}
-              alt={selectedProject.name}
-              className="w-full h-48 sm:h-56 md:h-60 object-cover rounded-md mb-4"
-            />
-            <h3 className="text-xl sm:text-2xl font-bold mb-2">{selectedProject.name}</h3>
+      {/* Projects Grid */}
+      <motion.div 
+        className="grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        key={activeCategory} // Re-animate when category changes
+      >
+        {filteredProjects.map((project) => (
+          <motion.div
+            key={project.id}
+            variants={cardVariants}
+            whileHover={{ y: -10, boxShadow: "0 25px 50px rgba(99, 102, 241, 0.2)" }}
+            className="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 flex flex-col group relative"
+          >
+            {/* Featured Badge */}
+            {project.featured && (
+              <div className="absolute top-4 right-4 z-10">
+                <motion.div 
+                  className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 shadow-lg"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 500, delay: 0.3 }}
+                >
+                  <FaStar size={10} /> Featured
+                </motion.div>
+              </div>
+            )}
 
-            <p className="mb-4 text-sm sm:text-base">{selectedProject.description}</p>
+            {/* Image Container */}
+            <div className="relative overflow-hidden h-48 sm:h-52 md:h-56">
+              <motion.img
+                src={project.image}
+                alt={project.name}
+                className="w-full h-full object-cover"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.4 }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {/* Category Badge */}
+                <div className="absolute top-4 left-4">
+                  <span className="bg-white/90 backdrop-blur-sm text-indigo-600 px-3 py-1 rounded-full text-xs font-bold">
+                    {project.category}
+                  </span>
+                </div>
+              </div>
+            </div>
 
-            <div className="mb-4">
-              <strong>Main Technology Stack:</strong>
-              <div className="flex flex-wrap gap-2 mt-2">
-                {selectedProject.techStack.map((tech, idx) => (
+            {/* Card Content */}
+            <div className="p-5 sm:p-6 flex flex-col flex-grow">
+              {/* Title & Year */}
+              <div className="flex items-start justify-between mb-3">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors flex-1">
+                  {project.name}
+                </h3>
+                {project.year && (
+                  <div className="flex items-center gap-1 text-gray-500 text-xs ml-2">
+                    <FaCalendar size={10} />
+                    <span>{project.year}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Short Description */}
+              {project.shortDescription && (
+                <p className="text-sm text-gray-600 mb-4 line-clamp-2">
+                  {project.shortDescription}
+                </p>
+              )}
+
+              {/* Tech Stack Preview (First 3) */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.techStack.slice(0, 3).map((tech, idx) => (
                   <span
                     key={idx}
-                    className="bg-purple-100 text-purple-700 text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full"
+                    className="text-xs bg-indigo-50 text-indigo-600 px-2 py-1 rounded-md font-medium"
                   >
                     {tech}
                   </span>
                 ))}
+                {project.techStack.length > 3 && (
+                  <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-md font-medium">
+                    +{project.techStack.length - 3} more
+                  </span>
+                )}
+              </div>
+
+              {/* View More Button */}
+              <motion.button
+                onClick={() => setSelectedProject(project)}
+                className="mt-auto flex cursor-pointer items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl text-sm sm:text-base font-semibold shadow-lg"
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(99, 102, 241, 0.4)" }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <FaEye className="text-white" />
+                View Details
+              </motion.button>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+      </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 px-4 sm:px-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setSelectedProject(null)}
+          >
+            <motion.div
+              className="bg-white rounded-2xl shadow-2xl max-w-full sm:max-w-lg md:max-w-2xl lg:max-w-3xl w-full p-6 sm:p-8 relative overflow-y-auto max-h-[90vh]"
+              initial={{ scale: 0.8, y: 50, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.8, y: 50, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+            <motion.button
+              onClick={() => setSelectedProject(null)}
+              className="absolute cursor-pointer top-2 right-2 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-red-500 text-white flex items-center justify-center text-2xl sm:text-3xl font-bold shadow-lg hover:bg-red-600"
+              whileHover={{ scale: 1.2, rotate: 90 }}
+              whileTap={{ scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+            >
+              &times;
+            </motion.button>
+
+            <motion.img
+              src={selectedProject.image}
+              alt={selectedProject.name}
+              className="w-full h-56 sm:h-64 md:h-72 object-cover rounded-xl mb-6 shadow-lg"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            />
+            <h3 className="text-2xl sm:text-3xl font-extrabold mb-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">{selectedProject.name}</h3>
+
+            <p className="mb-6 text-sm sm:text-base text-gray-700 leading-relaxed">{selectedProject.description}</p>
+
+            <div className="mb-6">
+              <strong className="text-lg text-gray-900">Main Technology Stack:</strong>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {selectedProject.techStack.map((tech, idx) => (
+                  <motion.span
+                    key={idx}
+                    className="bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-700 text-xs sm:text-sm font-semibold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-sm"
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3 + idx * 0.05 }}
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
               </div>
             </div>
 
-            <p className="mb-4 text-sm sm:text-base">
-              <strong>Challenges Faced:</strong> {selectedProject.challenges}
+            {/* Features List */}
+            {selectedProject.features && selectedProject.features.length > 0 && (
+              <div className="mb-6">
+                <strong className="text-lg text-gray-900 flex items-center gap-2">
+                  <FaStar className="text-yellow-500" /> Key Features:
+                </strong>
+                <ul className="mt-3 space-y-2">
+                  {selectedProject.features.map((feature, idx) => (
+                    <motion.li
+                      key={idx}
+                      className="flex items-start gap-2 text-sm sm:text-base text-gray-700"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.4 + idx * 0.1 }}
+                    >
+                      <span className="text-indigo-600 mt-1">✓</span>
+                      <span>{feature}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <p className="mb-4 sm:mb-6 text-sm sm:text-base text-gray-700">
+              <strong className="text-gray-900">Challenges Faced:</strong> {selectedProject.challenges}
             </p>
-            <p className="mb-4 text-sm sm:text-base">
-              <strong>Potential Improvements & Future Plans:</strong>{" "}
+            <p className="mb-6 sm:mb-8 text-sm sm:text-base text-gray-700">
+              <strong className="text-gray-900">Potential Improvements & Future Plans:</strong>{" "}
               {selectedProject.improvements}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <motion.a
                 href={selectedProject.liveLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg shadow-md text-sm sm:text-base font-semibold transition"
+                className="flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-3 rounded-xl shadow-lg text-sm sm:text-base font-semibold flex-1"
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(99, 102, 241, 0.4)" }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <FaExternalLinkAlt /> Live Demo
-              </a>
-              <a
+              </motion.a>
+              <motion.a
                 href={selectedProject.githubClient}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-gray-900 hover:bg-gray-800 text-white px-4 py-2 rounded-lg shadow-md text-sm sm:text-base font-semibold transition"
+                className="flex items-center justify-center gap-2 bg-gradient-to-r from-gray-800 to-gray-900 text-white px-6 py-3 rounded-xl shadow-lg text-sm sm:text-base font-semibold flex-1"
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0,0,0,0.4)" }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <FaGithub /> Code
-              </a>
+                <FaGithub /> Client Code
+              </motion.a>
+              {selectedProject.githubServer && (
+                <motion.a
+                  href={selectedProject.githubServer}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-xl shadow-lg text-sm sm:text-base font-semibold flex-1"
+                  whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(34, 197, 94, 0.4)" }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                >
+                  <FaCode /> Server Code
+                </motion.a>
+              )}
             </div>
-          </div>
-        </div>
-      )}
-
-      {/* Tailwind custom animation */}
-      <style>
-        {`
-          @keyframes fadeIn {
-            0% { opacity: 0; transform: scale(0.95); }
-            100% { opacity: 1; transform: scale(1); }
-          }
-        `}
-      </style>
+          </motion.div>
+        </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

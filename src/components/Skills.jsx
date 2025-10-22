@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
     SiHtml5,
     SiCss3,
@@ -32,29 +33,75 @@ const skills = [
 ];
 
 const Skills = () => {
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20, scale: 0.8 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 12
+            }
+        }
+    };
+
     return (
-        <section id="skills">
-            <div className="py-16 bg-white">
-                <h2 className="text-4xl font-bold  text-gray-800">
+        <section id="skills" className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-white via-purple-50 to-indigo-50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                <motion.h2 
+                    className="text-3xl sm:text-4xl md:text-5xl text-center mb-10 md:mb-14 font-extrabold text-gray-900"
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                >
+                    Skills / <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">Tools</span>
+                </motion.h2>
 
-                </h2>
-                <h2 className="text-4xl md:text-5xl text-center mb-10 font-extrabold text-gray-900">
-                    Skills / <span className="text-indigo-600">Tools</span>
-                </h2>
-
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 max-w-6xl mx-auto px-4">
+                <motion.div 
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 md:gap-8"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                >
                     {skills.map((skill, index) => (
-                        <div
+                        <motion.div
                             key={index}
+                            variants={itemVariants}
+                            whileHover={{ 
+                                scale: 1.15, 
+                                rotate: [0, -10, 10, 0],
+                                transition: { duration: 0.4 }
+                            }}
+                            whileTap={{ scale: 0.9 }}
                             role="button"
                             tabIndex={0}
-                            className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="flex flex-col items-center p-4 sm:p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-indigo-300 group"
                         >
-                            {skill.icon}
-                            <p className="mt-3 text-lg font-medium text-gray-800">{skill.name}</p>
-                        </div>
+                            <motion.div
+                                className="mb-3"
+                                whileHover={{ rotate: 360, scale: 1.2 }}
+                                transition={{ duration: 0.6 }}
+                            >
+                                {skill.icon}
+                            </motion.div>
+                            <p className="mt-2 text-sm sm:text-base md:text-lg font-semibold text-gray-800 group-hover:text-indigo-600 transition-colors text-center">{skill.name}</p>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );
